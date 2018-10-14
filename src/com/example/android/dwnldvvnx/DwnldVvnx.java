@@ -71,7 +71,7 @@ public class DwnldVvnx extends Service {
 		request.setDescription("Downloading");
 		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 		request.setVisibleInDownloadsUi(false);
-		request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf"));
+		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf"));
 		downloadmanager.enqueue(request);
 		
 		

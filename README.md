@@ -20,14 +20,14 @@
  indispensable, survit au reboot (tant que tu réinstalles pas l'appli), sinon app is in background uid null
  dumpsys deviceidle whitelist +com.example.android.dwnldvvnx
  
- # am start-service com.example.android.dwnldvvnx/.dwnldvvnx  
+ # am start-service com.example.android.dwnldvvnx/.DwnldVvnx  
   
  
  logcat -s DwnldVvnx
  
  
  Lancement avec un intent explicite, syntaxe:
- am start-service -a android.intent.action.DIAL com.example.android.dwnldvvnx/.dwnldvvnx
+ am start-service -a android.intent.action.DIAL com.example.android.dwnldvvnx/.DwnldVvnx
 
  
  
