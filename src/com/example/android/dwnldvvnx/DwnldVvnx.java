@@ -1,6 +1,6 @@
 /**
  * Octobre 2018
- * make StartVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
+ * make DwnldVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
  * 
  * adb uninstall com.example.android.dwnldvvnx
  * 
@@ -33,46 +33,60 @@ import android.util.Log;
 import android.os.IBinder;
 import android.content.Intent;
 
-//Essai downloadManager
-import android.app.DownloadManager;
-import android.net.Uri;
-
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.os.SystemClock;
 
 
 public class DwnldVvnx extends Service {
 	
 	private static final String TAG = "DwnldVvnx";
+	
+	// 30 * 1000 = 30 seconds in milliseconds 
+    //de toutes façons en dessous de 60s: W AlarmManager: Suspiciously short interval 30000 millis; expanding to 60 seconds
+
+    private static final long PERIODE_MS = 180 * 1000;
+
+    // An intent for AlarmService, to trigger it as if the Activity called startService().
+    private PendingIntent mAlarmSender;
+
+    // Contains a handle to the system alarm service
+    private AlarmManager mAlarmManager;
  
     @Override
     public void onCreate() {
 		Log.d(TAG, "onCreate");		
-				
-        //stopSelf(); //j'avais mis ça juste parce que le dev guide disait qu'il fallait faire le ménage soi-même
+
+        // Create a PendingIntent to trigger a startService() for AlarmService
+        mAlarmSender = PendingIntent.getService(  // set up an intent for a call to a service (voir dev guide intents à "Using a pending intent")
+            this,  // the current context
+            0,  // request code (not used)
+            new Intent (this, AlarmDwnldVvnx.class),  // A new Service intent 'c'est un intent explicite'
+            0   // flags (none are required for a service)
+        );
+
+        // Gets the handle to the system alarm service
+        mAlarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        
+        long firstAlarmTime = SystemClock.elapsedRealtime();
+        
+        mAlarmManager.setRepeating(
+                AlarmManager.ELAPSED_REALTIME_WAKEUP, // based on time since last wake up
+                firstAlarmTime,  // sends the first alarm immediately
+                PERIODE_MS,  // repeats every XX
+                mAlarmSender  // when the alarm goes off, sends this Intent
+            );   
+
+
+
+
+
     }
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 		Log.d(TAG, "OnStartCommand");
-		
-		
-		
-		
-		//Essai downloadManager
-		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
-		Uri uri = Uri.parse("http://www.vincentachard.fr/airmada.pdf");
-		DownloadManager.Request request = new DownloadManager.Request(uri);
-		request.setTitle("My File");
-		request.setDescription("Downloading");
-		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-		request.setVisibleInDownloadsUi(false);
-		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf"));
-		downloadmanager.enqueue(request);
-		
-		
-		
-		
-		
-		
+	
 		return START_NOT_STICKY;
 	}
 

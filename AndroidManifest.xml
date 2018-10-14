@@ -39,7 +39,10 @@
     android:debuggable="true">
         <service
             android:name=".DwnldVvnx"
-            android:label="@string/mon_label_vvnx"
+            android:exported="true">
+        </service>
+        <service
+            android:name=".AlarmDwnldVvnx"
             android:exported="true">
         </service>
     </application>
