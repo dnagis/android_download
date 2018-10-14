@@ -6,8 +6,7 @@ import android.app.Service;
 import android.util.Log;
 import android.os.IBinder;
 import android.content.Intent;
-
-//Essai downloadManager
+//DownloadManager
 import android.app.DownloadManager;
 import android.net.Uri;
 
@@ -20,31 +19,24 @@ public class AlarmDwnldVvnx extends Service {
     @Override
     public void onCreate() {
 		Log.d(TAG, "onCreate");				
-        //stopSelf(); //j'avais mis ça juste parce que le dev guide disait qu'il fallait faire le ménage soi-même
     }
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.d(TAG, "OnStartCommand");
 		
+		Log.d(TAG, "OnStartCommand");		
 		
-		
-		
-		//Téléchargement via dDwnloadManager
+		//Téléchargement via DownloadManager
 		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
-		Uri uri = Uri.parse("http://www.vincentachard.fr/airmada.pdf");
+		//Uri uri = Uri.parse("http://www.vincentachard.fr/airmada.pdf");
+		Uri uri = Uri.parse("http://5.135.183.126:8778/animation.gif");
 		DownloadManager.Request request = new DownloadManager.Request(uri);
-		request.setTitle("My File");
+		request.setTitle("DwnldVvnx");
 		request.setDescription("Downloading");
 		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-		request.setVisibleInDownloadsUi(false);
-		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf"));
+		request.setVisibleInDownloadsUi(false);		
+		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf")); //il lui faut permission.WRITE_EXTERNAL_STORAGE (manifest + param!!!)
 		downloadmanager.enqueue(request);
-		
-		
-		
-		
-		
 		
 		return START_NOT_STICKY;
 	}
