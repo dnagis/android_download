@@ -30,8 +30,8 @@
     <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> -->
         
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--***attention il faut le set à la main dans les paramètres aussi!!***-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
+    <!--***attention il faut le set à la main dans les paramètres aussi!!
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> ***-->
      
     <application 
     android:label="Download en alarm pour vitesse download"

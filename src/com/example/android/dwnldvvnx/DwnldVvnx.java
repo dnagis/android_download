@@ -1,14 +1,8 @@
 /**
  * Octobre 2018
- * Le service le plus simple au monde! Log un truc. Le stub par excellence, interdiction de complexifier!
- * 
- * Point de départ pour tout projet...
- *  
- * Squelette (arborescence et Android.mk) tiré de development/samples/
- * make StartVvnx (LOCAL_PACKAGE_NAME dans le Android.mk
+ * make StartVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
  * 
  * adb uninstall com.example.android.dwnldvvnx
- * 
  * 
  * adb install out/target/product/mido/system/app/DwnldVvnx/DwnldVvnx.apk
  * ou
