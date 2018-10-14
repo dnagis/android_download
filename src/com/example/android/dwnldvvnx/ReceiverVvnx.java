@@ -15,9 +15,10 @@ public class ReceiverVvnx extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(TAG, "onReceive dans mon le receiver de download, action=" + intent.getAction());
-     
-
+        //Log.d(TAG, "onReceive dans mon le receiver de download, action=" + intent.getAction() + AlarmDwnldVvnx.lastTimestamp);
+        long completeTimestamp = System.currentTimeMillis();
+		
+		Log.d(TAG, "onReceive receiver download ts_launch = "+ AlarmDwnldVvnx.launchTimestamp + " et ts fin = " + completeTimestamp);
            
 		}
     }

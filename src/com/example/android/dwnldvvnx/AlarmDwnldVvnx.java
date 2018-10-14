@@ -15,11 +15,13 @@ import android.content.IntentFilter;
 
 
 
+
+
 public class AlarmDwnldVvnx extends Service {
 	
 	private static final String TAG = "DwnldVvnx";
 	
-
+	public static long launchTimestamp;
  
     @Override
     public void onCreate() {
@@ -44,7 +46,7 @@ public class AlarmDwnldVvnx extends Service {
 		downloadmanager.enqueue(request);
 		
 		//Register du receiver DOWNLOAD_COMPLETE -> dans le manifest only, si je le mets ici aussi, tu te frappes deux onReceive() à chaque fois!
-  
+		launchTimestamp = System.currentTimeMillis();
 		
 		return START_NOT_STICKY;
 	}
