@@ -36,7 +36,7 @@ public class AlarmDwnldVvnx extends Service {
 		//Téléchargement via DownloadManager
 		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
 		//Uri uri = Uri.parse("http://www.vincentachard.fr/airmada.pdf");
-		Uri uri = Uri.parse("http://5.135.183.126:8778/animation.gif");
+		Uri uri = Uri.parse("http://5.135.183.126:8778/test.img");
 		DownloadManager.Request request = new DownloadManager.Request(uri);
 		request.setTitle("DwnldVvnx");
 		request.setDescription("Downloading");
