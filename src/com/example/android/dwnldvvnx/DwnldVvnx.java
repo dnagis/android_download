@@ -19,6 +19,8 @@
  * 
  * am start-service com.example.android.dwnldvvnx/.DwnldVvnx
  * 
+ * dumpsys deviceidle whitelist +com.example.android.dwnldvvnx; am start-service com.example.android.dwnldvvnx/.DwnldVvnx
+ * 
  * logcat -s DwnldVvnx
  * ou
  * logcat -s AlarmDwnldVvnx
@@ -45,6 +47,8 @@ import android.app.PendingIntent;
 import android.os.SystemClock;
 
 
+
+
 public class DwnldVvnx extends Service {
 	
 	private static final String TAG = "DwnldVvnx";
@@ -65,7 +69,7 @@ public class DwnldVvnx extends Service {
  
     @Override
     public void onCreate() {
-		Log.d(TAG, "onCreate");		
+		Log.d(TAG, "onCreate dans DwnldVvnx");		
 
         // Create a PendingIntent to trigger a startService() for AlarmDwnldVvnx
         mAlarmSender = PendingIntent.getService(  // set up an intent for a call to a service (voir dev guide intents à "Using a pending intent")
@@ -85,12 +89,16 @@ public class DwnldVvnx extends Service {
                 firstAlarmTime,  // sends the first alarm immediately
                 PERIODE_MS,  // repeats every XX
                 mAlarmSender  // when the alarm goes off, sends this Intent
-            );   
+            );
+            
+ 
+            
+               
     }
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.d(TAG, "OnStartCommand");	
+		Log.d(TAG, "OnStartCommand dans DwnldVvnx");	
 		return START_NOT_STICKY;
 	}
 

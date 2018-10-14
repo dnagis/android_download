@@ -9,22 +9,27 @@ import android.content.Intent;
 //DownloadManager
 import android.app.DownloadManager;
 import android.net.Uri;
+//Broadcast Receiver
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
 
 
 
 public class AlarmDwnldVvnx extends Service {
 	
-	private static final String TAG = "AlarmDwnldVvnx";
+	private static final String TAG = "DwnldVvnx";
+	
+
  
     @Override
     public void onCreate() {
-		Log.d(TAG, "onCreate");				
+		Log.d(TAG, "onCreate dans AlarmDwnldVvnx");			
     }
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 		
-		Log.d(TAG, "OnStartCommand");		
+		Log.d(TAG, "OnStartCommand dans AlarmDwnldVvnx");		
 		
 		//Téléchargement via DownloadManager
 		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
@@ -37,6 +42,9 @@ public class AlarmDwnldVvnx extends Service {
 		request.setVisibleInDownloadsUi(false);		
 		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf")); //il lui faut permission.WRITE_EXTERNAL_STORAGE (manifest + param!!!)
 		downloadmanager.enqueue(request);
+		
+		//Register du receiver DOWNLOAD_COMPLETE -> dans le manifest only, si je le mets ici aussi, tu te frappes deux onReceive() à chaque fois!
+  
 		
 		return START_NOT_STICKY;
 	}

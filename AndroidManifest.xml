@@ -45,5 +45,11 @@
             android:name=".AlarmDwnldVvnx"
             android:exported="true">
         </service>
+        <receiver android:name="ReceiverVvnx" 
+        android:exported="true">
+             <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+         </receiver>
     </application>
 </manifest>
