@@ -18,10 +18,13 @@
  dumpsys deviceidle whitelist +com.example.android.dwnldvvnx
  
  # am start-service com.example.android.dwnldvvnx/.DwnldVvnx  
-  
+ 
+ dumpsys deviceidle whitelist +com.example.android.dwnldvvnx; am start-service com.example.android.dwnldvvnx/.DwnldVvnx
  
  logcat -s DwnldVvnx
  
+ sqlite3 /data/data/com.example.android.dwnldvvnx/databases/dwnld.db "select ID, datetime(TIME/1000, 'unixepoch', 'localtime'), DELAY FROM dwnl;"
+  
  
  Lancement avec un intent explicite, syntaxe:
  am start-service -a android.intent.action.DIAL com.example.android.dwnldvvnx/.DwnldVvnx
