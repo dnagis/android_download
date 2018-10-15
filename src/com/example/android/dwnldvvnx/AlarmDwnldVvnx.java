@@ -37,14 +37,16 @@ public class AlarmDwnldVvnx extends Service {
 		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);
 		//Uri uri = Uri.parse("http://www.vincentachard.fr/airmada.pdf");
 		Uri uri = Uri.parse("http://5.135.183.126:8778/test.img");
+		
+		//Détails request sur https://developer.android.com/reference/android/app/DownloadManager.Request
 		DownloadManager.Request request = new DownloadManager.Request(uri);
 		request.setTitle("DwnldVvnx");
-		request.setDescription("Downloading");
-		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+		request.setDescription("Downloading");		
+		//request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //bruit + notif barre
+		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN); //nécessite permission DOWNLOAD_WITHOUT_NOTIFICATION
 		request.setVisibleInDownloadsUi(false);		
 		//request.setDestinationUri(Uri.parse("file:///sdcard/vvnx_files/airmada.pdf")); //il lui faut permission.WRITE_EXTERNAL_STORAGE (manifest + param!!!)
-		downloadmanager.enqueue(request);
-		
+		downloadmanager.enqueue(request);		
 		//Register du receiver DOWNLOAD_COMPLETE -> dans le manifest only, si je le mets ici aussi, tu te frappes deux onReceive() à chaque fois!
 		launchTimestamp = System.currentTimeMillis();
 		

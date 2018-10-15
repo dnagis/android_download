@@ -3,6 +3,8 @@
  * ***Téléchargement automatique sous Alarm, via DownloadManager. L'appel de ce service crée une alarm
  * qui déclenche le service à côté: AlarmDwnldVvnx***
  * 
+ * Le LOG que j'ai rédigé:  kimsufi @ /home/android/LOG_download
+ * 
  * #compilation
  * make DwnldVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
  * 
