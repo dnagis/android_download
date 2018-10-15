@@ -60,7 +60,7 @@ public class DwnldVvnx extends Service {
 	// 30 * 1000 = 30 seconds in milliseconds 
     //de toutes façons en dessous de 60s: W AlarmManager: Suspiciously short interval 30000 millis; expanding to 60 seconds
 
-    private static final long PERIODE_MS = 180 * 1000;
+    private static final long PERIODE_MS = 80 * 1000;
 
     // An intent for AlarmService, to trigger it as if this service called startService().
     private PendingIntent mAlarmSender;
