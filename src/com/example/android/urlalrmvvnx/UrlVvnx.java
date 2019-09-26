@@ -1,45 +1,45 @@
 /**
  * Octobre 2018
  * ***Téléchargement automatique sous Alarm, via DownloadManager. L'appel de ce service crée une alarm
- * qui déclenche le service à côté: AlarmDwnldVvnx***
+ * qui déclenche le service à côté: AlarmUrlVvnx***
  * 
  * Le LOG que j'ai rédigé:  kimsufi @ /home/android/LOG_download
  * 
  * #compilation
- * make DwnldVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
+ * make UrlAlrmVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
  * 
- * adb uninstall com.example.android.dwnldvvnx
+ * adb uninstall com.example.android.urlalrmvvnx
  * 
- * adb install out/target/product/mido/system/app/DwnldVvnx/DwnldVvnx.apk
+ * adb install out/target/product/mido/system/app/UrlAlrmVvnx/UrlAlrmVvnx.apk
  * ou
- * adb install out/target/product/generic_arm64/system/app/DwnldVvnx/DwnldVvnx.apk
+ * adb install out/target/product/generic_arm64/system/app/UrlAlrmVvnx/UrlAlrmVvnx.apk
  * 
  * Lancement du service en shell (nom du service: celui déclaré dans le manifest -component name-) 
  * 
  * #indispensable avant lancement, survit au reboot (tant que tu réinstalles pas l'appli), sinon erreur: app is in background uid null
- * dumpsys deviceidle whitelist +com.example.android.dwnldvvnx
+ * dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx
  * 
- * am start-service com.example.android.dwnldvvnx/.DwnldVvnx
+ * am start-service com.example.android.urlalrmvvnx/.UrlVvnx
  * 
- * dumpsys deviceidle whitelist +com.example.android.dwnldvvnx; am start-service com.example.android.dwnldvvnx/.DwnldVvnx
+ * dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx; am start-service com.example.android.urlalrmvvnx/.UrlVvnx
  * 
- * logcat -s DwnldVvnx
+ * logcat -s UrlVvnx
  * ou
  * logcat -s AlarmDwnldVvnx
  * 
- * am force-stop com.example.android.dwnldvvnx
+ * am force-stop com.example.android.urlalrmvvnx
  * 
  * 
  * Lancement avec un intent explicite, syntaxe:
- * am start-service -a android.intent.action.DIAL com.example.android.dwnldvvnx/.DwnldVvnx
+ * am start-service -a android.intent.action.DIAL com.example.android.urlalrmvvnx/.UrlVvnx
  * 
  * 
  *
- * sqlite3 /data/data/com.example.android.dwnldvvnx/databases/dwnld.db "select ID, datetime(TIME/1000, 'unixepoch', 'localtime'), DELAY FROM dwnl;"
+ * sqlite3 /data/data/com.example.android.urlalrmvvnx/databases/dwnld.db "select ID, datetime(TIME/1000, 'unixepoch', 'localtime'), DELAY FROM dwnl;"
  * 
  */
 
-package com.example.android.dwnldvvnx;
+package com.example.android.urlalrmvvnx;
 
 import android.app.Service;
 import android.util.Log;
@@ -53,9 +53,9 @@ import android.os.SystemClock;
 
 
 
-public class DwnldVvnx extends Service {
+public class UrlVvnx extends Service {
 	
-	private static final String TAG = "DwnldVvnx";
+	private static final String TAG = "UrlVvnx";
 	
 	// 30 * 1000 = 30 seconds in milliseconds 
     //de toutes façons en dessous de 60s: W AlarmManager: Suspiciously short interval 30000 millis; expanding to 60 seconds
@@ -73,13 +73,13 @@ public class DwnldVvnx extends Service {
  
     @Override
     public void onCreate() {
-		Log.d(TAG, "onCreate dans DwnldVvnx");		
+		Log.d(TAG, "onCreate dans UrlVvnx");		
 
         // Create a PendingIntent to trigger a startService() for AlarmDwnldVvnx
         mAlarmSender = PendingIntent.getService(  // set up an intent for a call to a service (voir dev guide intents à "Using a pending intent")
             this,  // the current context
             0,  // request code (not used)
-            new Intent (this, AlarmDwnldVvnx.class),  // A new Service intent 'c'est un intent explicite'
+            new Intent (this, AlarmUrlVvnx.class),  // A new Service intent 'c'est un intent explicite'
             0   // flags (none are required for a service)
         );
 
@@ -102,7 +102,7 @@ public class DwnldVvnx extends Service {
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.d(TAG, "OnStartCommand dans DwnldVvnx");	
+		Log.d(TAG, "OnStartCommand dans UrlVvnx");	
 		return START_NOT_STICKY;
 	}
 

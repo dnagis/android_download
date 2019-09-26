@@ -1,7 +1,7 @@
 //Register du receiver DOWNLOAD_COMPLETE -> dans le manifest only, si je register dans le code aussi, tu te frappes deux onReceive() à chaque fois!
 
 
-package com.example.android.dwnldvvnx;
+package com.example.android.urlalrmvvnx;
 
 import android.content.BroadcastReceiver;
 
@@ -16,13 +16,13 @@ import android.content.ContentValues;
 
 
 public class ReceiverVvnx extends BroadcastReceiver {
-    private static final String TAG = "DwnldVvnx";
+    private static final String TAG = "UrlVvnx";
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
 		long timestamp = System.currentTimeMillis();
-        long delay = timestamp - AlarmDwnldVvnx.launchTimestamp;
+        long delay = timestamp - AlarmUrlVvnx.launchTimestamp;
 		
         Log.d(TAG, "onReceive receiver download delay = " + delay);   
 		

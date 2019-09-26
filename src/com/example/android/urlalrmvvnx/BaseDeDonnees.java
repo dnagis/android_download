@@ -1,4 +1,4 @@
-package com.example.android.dwnldvvnx;
+package com.example.android.urlalrmvvnx;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,7 +21,7 @@ import android.util.Log;
 
 public class BaseDeDonnees extends SQLiteOpenHelper {
 	
-	private static final String TAG = "DwnldVvnx";
+	private static final String TAG = "UrlVvnx";
 
     private static final String DATABASE_NAME = "dwnld.db";
     private static final int DATABASE_VERSION = 1;

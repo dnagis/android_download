@@ -23,7 +23,7 @@
 
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.dwnldvvnx">
+    package="com.example.android.urlalrmvvnx">
     
     <uses-sdk android:targetSdkVersion="26" android:minSdkVersion="19"/>
     
@@ -35,15 +35,15 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
      
     <application 
-    android:label="Download en alarm pour vitesse download"
+    android:label="Connection http en alrm"
     android:directBootAware="true"
     android:debuggable="true">
         <service
-            android:name=".DwnldVvnx"
+            android:name=".UrlVvnx"
             android:exported="true">
         </service>
         <service
-            android:name=".AlarmDwnldVvnx"
+            android:name=".AlarmUrlVvnx"
             android:exported="true">
         </service>
         <receiver android:name="ReceiverVvnx" 

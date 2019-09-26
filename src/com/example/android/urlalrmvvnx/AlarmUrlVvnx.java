@@ -1,6 +1,6 @@
 
 
-package com.example.android.dwnldvvnx;
+package com.example.android.urlalrmvvnx;
 
 import android.app.Service;
 import android.util.Log;
@@ -35,21 +35,21 @@ import org.json.JSONObject;
 
 
 
-public class AlarmDwnldVvnx extends Service {
+public class AlarmUrlVvnx extends Service {
 	
-	private static final String TAG = "DwnldVvnx";
+	private static final String TAG = "UrlVvnx";
 	
 	public static long launchTimestamp;
  
     @Override
     public void onCreate() {
-		Log.d(TAG, "onCreate dans AlarmDwnldVvnx");			
+		Log.d(TAG, "onCreate dans AlarmUrlVvnx");			
     }
     
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 		
-		Log.d(TAG, "OnStartCommand dans AlarmDwnldVvnx");	
+		Log.d(TAG, "OnStartCommand dans AlarmUrlVvnx");	
 		
 		//POST Request, déporté dans AsyncTask sinon erreuur runtime android.os.NetworkOnMainThreadException
 		new PostRequestTask().execute();		
@@ -72,7 +72,7 @@ public class AlarmDwnldVvnx extends Service {
 		}*/		
 		//Détails request sur https://developer.android.com/reference/android/app/DownloadManager.Request
 		DownloadManager.Request request = new DownloadManager.Request(uri);
-		request.setTitle("DwnldVvnx");
+		request.setTitle("UrlDwnldVvnx");
 		request.setDescription("Downloading");		
 		//request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //bruit + notif barre
 		request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN); //nécessite permission DOWNLOAD_WITHOUT_NOTIFICATION
