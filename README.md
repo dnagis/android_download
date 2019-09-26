@@ -1,4 +1,4 @@
-#Connections http URL en alrm 
+# Connections http URL en alrm 
 
  Request POST via httpurl connection et téléchargement via downloadmanager
 
