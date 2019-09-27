@@ -54,9 +54,26 @@ public class AlarmUrlVvnx extends Service {
 		//POST Request, déporté dans AsyncTask sinon erreuur runtime android.os.NetworkOnMainThreadException
 		new PostRequestTask().execute();		
 		
+		//ma fonction download
+		//downLoad();
 		
-			
-		
+		return START_NOT_STICKY;
+	}
+
+    @Override
+    public void onDestroy() {		
+		Log.d(TAG, "OnDestroy");
+		stopSelf();		
+	 }
+	 
+	  @Override
+	public IBinder onBind(Intent intent) {
+      // We don't provide binding, so return null
+      return null;
+	}
+	
+	private void downLoad() {
+		Log.d(TAG, "Début download");
 		//Téléchargement via DownloadManager
 		DownloadManager downloadmanager = (DownloadManager) getSystemService(this.DOWNLOAD_SERVICE);		
 		Uri uri = Uri.parse("http://5.135.183.126:8778/test.img");		
@@ -85,20 +102,6 @@ public class AlarmUrlVvnx extends Service {
 		downloadmanager.enqueue(request);		
 		//Register du receiver DOWNLOAD_COMPLETE -> dans le manifest only, si je le mets ici aussi, tu te frappes deux onReceive() à chaque fois!
 		launchTimestamp = System.currentTimeMillis();
-		
-		return START_NOT_STICKY;
-	}
-
-    @Override
-    public void onDestroy() {		
-		Log.d(TAG, "OnDestroy");
-		stopSelf();		
-	 }
-	 
-	  @Override
-	public IBinder onBind(Intent intent) {
-      // We don't provide binding, so return null
-      return null;
 	}
 	
 	
@@ -111,7 +114,7 @@ public class AlarmUrlVvnx extends Service {
 			String error_code = "HTTP_REPLY_NON_INITIALISEE";
 			
 			try {	
-			URL url = new URL("http://192.168.1.118:8000/essai_post");
+			URL url = new URL("http://5.135.183.126:8050/essai_post");
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setDoOutput(true);
 			urlConnection.setRequestMethod("POST");
@@ -119,7 +122,7 @@ public class AlarmUrlVvnx extends Service {
 			urlConnection.setRequestProperty("charset", "utf-8");
 			DataOutputStream out = new DataOutputStream(urlConnection.getOutputStream());
 			//out.write(jsonEnvoi.toString().getBytes("iso-8859-15"));
-			String mon_json = "{\"username\":\"vincent\"}";
+			String mon_json = "{\"username\":\"mido\"}";
 			out.writeBytes(mon_json);
 			out.flush();
 			out.close();
