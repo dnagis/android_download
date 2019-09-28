@@ -31,6 +31,11 @@ import java.net.URLEncoder;
 import java.util.List;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+
 
 
 
@@ -40,6 +45,10 @@ public class AlarmUrlVvnx extends Service {
 	private static final String TAG = "UrlVvnx";
 	
 	public static long launchTimestamp;
+	
+	public LocationManager mLocationManager;
+	
+	public Location lastKnownLocationGPS;
  
     @Override
     public void onCreate() {
@@ -50,6 +59,12 @@ public class AlarmUrlVvnx extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 		
 		Log.d(TAG, "OnStartCommand dans AlarmUrlVvnx");	
+		
+		mLocationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		lastKnownLocationGPS = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+		
+			
 		
 		//POST Request, déporté dans AsyncTask sinon erreuur runtime android.os.NetworkOnMainThreadException
 		new PostRequestTask().execute();		
@@ -113,8 +128,14 @@ public class AlarmUrlVvnx extends Service {
 	    protected Void doInBackground(Void... params) {
 			String error_code = "HTTP_REPLY_NON_INITIALISEE";
 			
+			double lastLat = lastKnownLocationGPS.getLatitude();
+			double lastLong = lastKnownLocationGPS.getLongitude();
+			long fixtime = lastKnownLocationGPS.getTime();
+			
+			//Log.d(TAG, "lastLAT=" + lastLat + " lastLONG=" + lastLong + "  fixtime=" + fixtime);
+			
 			try {	
-			URL url = new URL("http://5.135.183.126:8050/essai_post");
+			URL url = new URL("http://5.135.183.126:8050/post_loc");
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setDoOutput(true);
 			urlConnection.setRequestMethod("POST");
@@ -122,7 +143,8 @@ public class AlarmUrlVvnx extends Service {
 			urlConnection.setRequestProperty("charset", "utf-8");
 			DataOutputStream out = new DataOutputStream(urlConnection.getOutputStream());
 			//out.write(jsonEnvoi.toString().getBytes("iso-8859-15"));
-			String mon_json = "{\"username\":\"mido\"}";
+			String mon_json = "{\"lat\":\"" + lastLat + "\",\"long\":\"" + lastLong + "\",\"fixtime\":\"" +   fixtime/1000 +          "\"}";
+			Log.d(TAG, "le json qu'on send= " + mon_json);
 			out.writeBytes(mon_json);
 			out.flush();
 			out.close();

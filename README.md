@@ -19,6 +19,8 @@
  indispensable, survit au reboot (tant que tu réinstalles pas l'appli), sinon app is in background uid null
  dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx
  
+ pm grant com.example.android.urlalrmvvnx android.permission.ACCESS_FINE_LOCATION
+ 
  # am start-service com.example.android.urlalrmvvnx/.DwnldVvnx  
  
  dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx; am start-service com.example.android.urlalrmvvnx/.UrlVvnx
