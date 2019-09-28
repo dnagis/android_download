@@ -3,6 +3,8 @@
  Request POST via httpurl connection et téléchargement via downloadmanager
 
  Initialement: téléchargement de fichier, en alarm, pour déterminer vitesse de téléchargement (Palavas Opérateurs qd plus de box...)
+ 
+ Depuis septembre 2019: récup de la dernière location et envoi en requête http POST
   
  Squelette (arborescence et Android.mk) tiré de development/samples/ -> stub service
  ## make UrlAlrmVvnx (LOCAL_PACKAGE_NAME dans le Android.mk)
