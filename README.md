@@ -23,7 +23,7 @@
  
  pm grant com.example.android.urlalrmvvnx android.permission.ACCESS_FINE_LOCATION
  
- # am start-service com.example.android.urlalrmvvnx/.DwnldVvnx  
+ # am start-service com.example.android.urlalrmvvnx/.UrlVvnx 
  
  dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx; am start-service com.example.android.urlalrmvvnx/.UrlVvnx
  
