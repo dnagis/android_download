@@ -39,16 +39,9 @@
     android:label="Connection http en alrm"
     android:directBootAware="true"
     android:debuggable="true">
-        <service
-            android:name=".UrlVvnx"
-            android:exported="true">
-        </service>
-        <service
-            android:name=".AlarmUrlVvnx"
-            android:exported="true">
-        </service>
-        <receiver android:name="ReceiverVvnx" 
-        android:exported="true">
+        <service android:name=".UrlVvnx"/>
+        <service android:name=".AlarmUrlVvnx"/>
+       <receiver android:name="ReceiverVvnx" android:exported="true">
              <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>

@@ -27,7 +27,7 @@
  
  dumpsys deviceidle whitelist +com.example.android.urlalrmvvnx; am start-service com.example.android.urlalrmvvnx/.UrlVvnx
  
- logcat -s DwnldVvnx
+ logcat -s UrlVvnx
  
  sqlite3 /data/data/com.example.android.urlalrmvvnx/databases/dwnld.db "select ID, datetime(TIME/1000, 'unixepoch', 'localtime'), DELAY FROM dwnl;"
   

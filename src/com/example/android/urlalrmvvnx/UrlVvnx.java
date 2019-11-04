@@ -62,7 +62,7 @@ public class UrlVvnx extends Service {
 	// 80 * 1000 = 80 seconds in milliseconds 
     //de toutes façons en dessous de 60s: W AlarmManager: Suspiciously short interval 30000 millis; expanding to 60 seconds
 
-    private static final long PERIODE_MS = 300 * 1000;
+    private static final long PERIODE_MS = 60 * 1000;
 
     // An intent for AlarmService, to trigger it as if this service called startService().
     private PendingIntent mAlarmSender;
